@@ -31,6 +31,10 @@ export default function Root() {
 					name="description"
 					content="Find the closest Pantone TCX colors for any hex color code."
 				/>
+				<Meta
+					name="google-site-verification"
+					content="PylHrwBjrOCS_OfF-zHvdOxMGMCZzGulDMC9z18CSZg"
+				/>
 			</Head>
 			<Body>
 				<Suspense>
