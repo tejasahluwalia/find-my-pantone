@@ -35,6 +35,11 @@ export default function Root() {
 					name="google-site-verification"
 					content="PylHrwBjrOCS_OfF-zHvdOxMGMCZzGulDMC9z18CSZg"
 				/>
+				<script
+					defer
+					src="https://static.cloudflareinsights.com/beacon.min.js"
+					data-cf-beacon='{"token": "cb2bce9f81a74212a469d2f4e0773764"}'
+				></script>
 			</Head>
 			<Body>
 				<Suspense>
