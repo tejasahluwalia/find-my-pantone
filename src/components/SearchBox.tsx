@@ -26,7 +26,11 @@ export default function SearchBox(props: {
 						oninput={(e) => {
 							let input = e.currentTarget.value;
 							// test if input contains only valid hex characters
-							if (/^[0-9a-f]+$/.test(input) || input === "" || input === "#") {
+							if (
+								/^[0-9a-fA-F]+$/.test(input) ||
+								input === "" ||
+								input === "#"
+							) {
 								return setHex(input);
 							} else {
 								return (e.currentTarget.value = hex());
