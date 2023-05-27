@@ -6,14 +6,16 @@ export default function PantoneChip(props: {
 	hex: string;
 	name: string;
 }) {
-	const [copySuccess, setCopySuccess] = createSignal(false);
+	const [copyHexSuccess, setCopyHexSuccess] = createSignal(false);
+	const [copyPantoneChipSuccess, setCopyPantoneChipSuccess] =
+		createSignal(false);
 	let canvas: HTMLCanvasElement | undefined;
 
 	function handleHexCopy() {
 		navigator.clipboard.writeText(props?.hex ?? "").then(
 			() => {
-				setCopySuccess(true);
-				setTimeout(() => setCopySuccess(false), 1000);
+				setCopyHexSuccess(true);
+				setTimeout(() => setCopyHexSuccess(false), 1000);
 			},
 			(err) => {
 				console.error("Could not copy text: ", err);
@@ -22,11 +24,25 @@ export default function PantoneChip(props: {
 	}
 
 	onMount(() => {
+		// Request clipboard access
 		const ctx = canvas?.getContext("2d");
+		const dpr = window.devicePixelRatio || 1;
+
+		if (!canvas) {
+			console.error("Could not get canvas element");
+			return;
+		}
+		canvas.width = 192 * dpr;
+		canvas.height = 320 * dpr;
+		canvas.style.width = "192px";
+		canvas.style.height = "320px";
+
 		if (!ctx) {
 			console.error("Could not get canvas context");
 			return;
 		}
+
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
 		ctx.fillStyle = props.hex;
 		ctx.fillRect(0, 0, 192, 192);
@@ -65,8 +81,8 @@ export default function PantoneChip(props: {
 				])
 				.then(
 					() => {
-						setCopySuccess(true);
-						setTimeout(() => setCopySuccess(false), 1000);
+						setCopyPantoneChipSuccess(true);
+						setTimeout(() => setCopyPantoneChipSuccess(false), 1000);
 					},
 					(err) => {
 						console.error("Could not copy text: ", err);
@@ -76,13 +92,13 @@ export default function PantoneChip(props: {
 	}
 
 	return (
-		<li class="border relative">
+		<li class="border relative w-min">
 			<canvas ref={canvas} height="320" width="192" />
 			<div
 				class="absolute top-1 -right-8 hover:cursor-pointer"
 				onclick={handleHexCopy}
 			>
-				{!copySuccess() ? (
+				{!copyHexSuccess() ? (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -121,7 +137,7 @@ export default function PantoneChip(props: {
 				class="absolute top-12 -right-8 hover:cursor-pointer"
 				onclick={handleChipCopy}
 			>
-				{!copySuccess() ? (
+				{!copyPantoneChipSuccess() ? (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
