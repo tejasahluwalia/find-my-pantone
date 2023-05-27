@@ -19,15 +19,18 @@ export default function Home() {
 	});
 
 	return (
-		<main class="mx-auto text-gray-700 p-4 container">
-			<h1 class="text-4xl lg:text-6xl text-sky-950 font-bold my-16 text-center">
-				Convert HEX to Pantone
-			</h1>
-			<SearchBox hex={hex} setHex={setHex} />
+		<main>
+			<section class="mx-auto text-gray-700 p-4 container">
+				<h1 class="text-4xl lg:text-6xl text-sky-950 font-bold my-16 text-center">
+					Convert HEX to Pantone
+				</h1>
+				<SearchBox hex={hex} setHex={setHex} />
+			</section>
+
 			<h2 class="text-2xl lg:text-4xl text-center mb-8 font-bold text-sky-950">
 				Similar Pantone TCX colors
 			</h2>
-			<ol class="grid gap-2 sm:gap-4 auto-cols-min grid-rows-2 lg:grid-rows-1 grid-flow-col-dense justify-evenly">
+			<ol class="grid gap-12 grid-flow-col-dense overflow-x-auto w-screen px-12">
 				<For each={closestPantones()}>
 					{(pantone) => <PantoneChip {...pantone} />}
 				</For>
