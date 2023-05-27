@@ -24,12 +24,12 @@ export default function Root() {
 	return (
 		<Html lang="en">
 			<Head>
-				<Title>Find my Pantone | Hex to Pantone TCX Converter</Title>
+				<Title>Find my Pantone | HEX to Pantone TCX Converter</Title>
 				<Meta charset="utf-8" />
 				<Meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta
 					name="description"
-					content="Find the closest Pantone TCX colors for any hex color code."
+					content="Find the closest Pantone TCX colors for any HEX color code."
 				/>
 				<Meta
 					name="google-site-verification"
